@@ -54,14 +54,19 @@ def index():
 def searchCompany(company):
     friends_id = []
     friends_name = []
+    result_dict = dict()
     print "Searching " + company
     r = requests.get(url=CONNECTIONS_URL, auth=oauth1)
     profile_ids =  json.loads(r.content)
     temp_dict = idtoComDic(profile_ids)
     for key in temp_dict.iterkeys():
         if temp_dict[key].lower().find(company) >= 0:
-            print key
-    return render_template('index.html')
+            if result_dict.has_key(temp_dict[key]):
+                result_dict[temp_dict[key]].append(key)
+            else:
+                result_dict[temp_dict[key]] = key
+    return json.dumps(result_dict)
+    #return render_template('index.html')
 
 
 def idtoComDic(profile_ids):
