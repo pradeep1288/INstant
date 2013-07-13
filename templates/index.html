@@ -30,7 +30,7 @@
       "of",
       "who have worked on",
       "who are skilled at",
-      "who are"  
+      "who goto school at"  
     ];
     $("#mysearch").autocomplete({
       source: availableTags
@@ -42,20 +42,44 @@
   		var textValue = $("#mysearch").val();
   		if(textValue == ''){
   			alert("Please write a valid query!")
-  		}else{
-  				var company = textValue.split('at')[1]
-  				company = company.replace(" ","")
-  				$.getJSON('searchCompany/' +company, function(data) {
-  				$.each(data, function(key, val) {
-    				var name = val.split(",");
-    				var i  = 0;
-    				for (i=0;i<name.length;i++)
-    				{
-    					$('#name').append("<p><b>"+name[i]+"</b></p>");
-    				}
-			    });
-  		});		
-  	}
+  		}
+  		else
+  		{
+  				if (textValue.indexof("work") != -1)
+  				{
+	  				var company = textValue.split('at')[1]
+	  				company = company.replace(" ","")
+	  				$.getJSON('searchCompany/' +company, function(data) {
+	  				$.each(data, function(key, val) {
+	    				var name = val.split(",");
+	    				var i  = 0;
+	    				for (i=0;i<name.length;i++)
+	    				{
+	    					$('#name').append("<p><b>"+name[i]+"</b></p>");
+	    				}
+				    });
+	  			});
+	  			}
+	  			else if (textValue.indexof("school") !=1 )
+	  			{
+	  				var school = textValue.split('at')[1]
+	  				school = school.replace(" ","")
+	  				$.getJSON('searchCompany/' +school, function(data) {
+	  				$.each(data, function(key, val) {
+	    				var each_school = val.split(",");
+	    				var i  = 0;
+	    				for (i=0;i<each_school.length;i++)
+	    				{
+	    					$('#name').append("<p><b>"+each_school[i]+"</b></p>");
+	    				}
+				    });
+	  				});
+
+	  			}
+	  			else{
+
+	  			}		
+  		}
   }
 
   </script>
