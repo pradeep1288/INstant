@@ -45,8 +45,9 @@
   		}
   		else
   		{
-  				if (textValue.indexof("work") != -1)
+  				if (textValue.split('at')[0] == 'who work ')
   				{
+  					$('#name').empty();
 	  				var company = textValue.split('at')[1]
 	  				company = company.replace(" ","")
 	  				$.getJSON('searchCompany/' +company, function(data) {
@@ -60,8 +61,9 @@
 				    });
 	  			});
 	  			}
-	  			else if (textValue.indexof("school") !=1 )
+	  			else if (textValue.split('at')[0] == 'who goto school ')
 	  			{
+	  				$('#name').empty();
 	  				var school = textValue.split('at')[1]
 	  				school = school.replace(" ","")
 	  				$.getJSON('searchUniversity/' +school, function(data) {
