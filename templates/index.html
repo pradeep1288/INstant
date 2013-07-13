@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+	#mysearch{
+		
+	}
+	</style>
 	<meta charset="utf-8">
 	<meta name="viewport" comtent="width=device-width, initial-scale=1.0">
 	<title>A Linkedin Graph Search App</title>
@@ -10,7 +15,6 @@
 	<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css"/>
 	<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
 	<script>
   $(function() {
     var availableTags = [
@@ -20,37 +24,20 @@
       "who are skilled at",
       "who are"  
     ];
-    $( ".span2" ).autocomplete({
+    $( "#mysearch" ).autocomplete({
       source: availableTags
     });
   });
   </script>
 </head>
 <body>
-	<div class = "navbar navbar-inverse navbar-fixed-top">
-		<div class = "navbar-inner">
-			<div class = "container">
-				<a class = "btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class ="icon-th-list"></span>
-				</a>
-				
-				<div class ="nav-collapse collapse">
-					<ul class = "nav pull-right">
-						
-                		</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>	
-	</div>
 	<div class = "hero-unit">
 		<div class="container">
 			<div class="span12 pagination-centered">
 				<form>
   					<div class="input-prepend">
    						 <span class="add-on"><i class=" icon-linkedin"></i></span>
-   						 <input class="span2" type="text" placeholder="Search">
+   						 <input class="span2"  id ="mysearch" type="text" placeholder="Search">
   					</div>
   				</form>
 			</div>
