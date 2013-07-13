@@ -21,10 +21,10 @@ except OSError:
 app = Flask(__name__)
 
 
-CONSUMER_KEY = 'zq2nm0d3i35m'
-CONSUMER_SECRET = 'bRxXN3TefLfnsR4j'
-OAUTH_TOKEN = '81d05c6f-98dd-46e0-8313-384f5c442326'
-OAUTH_TOKEN_SECRET = '8b72cbfa-703a-41b8-8000-9b27003ad555'
+CONSUMER_KEY = 'ms493vqf7pjz'
+CONSUMER_SECRET = '5XWjsoW9pVOi0jyi'
+OAUTH_TOKEN = '01a410f0-f945-4175-b894-ffe6515b410d'
+OAUTH_TOKEN_SECRET = '20582c22-e927-4973-becd-65a386c14354'
 
 CONNECTIONS_URL = 'http://api.linkedin.com/v1/people/~/connections?format=json'
 AUTHORIZATION_URL = 'https://www.linkedin.com/uas/oauth2/authorization'
