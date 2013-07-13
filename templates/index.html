@@ -64,7 +64,7 @@
 	  			{
 	  				var school = textValue.split('at')[1]
 	  				school = school.replace(" ","")
-	  				$.getJSON('searchCompany/' +school, function(data) {
+	  				$.getJSON('searchUniversity/' +school, function(data) {
 	  				$.each(data, function(key, val) {
 	    				var each_school = val.split(",");
 	    				var i  = 0;
