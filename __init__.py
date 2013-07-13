@@ -21,10 +21,10 @@ except OSError:
 app = Flask(__name__)
 
 
-CONSUMER_KEY = 'cobfnnxqjxu9'
-CONSUMER_SECRET = 'oo2V5A2v99z1TdeO'
-OAUTH_TOKEN = '54b0d8cb-0078-4b6d-872e-e7e2f0e90eb5'
-OAUTH_TOKEN_SECRET = '60c0d962-b36b-4c20-9a4a-7b03a112af79'
+CONSUMER_KEY = 'kzdqjxzkp4m1'
+CONSUMER_SECRET = 'lrb6PLggZQu65do4'
+OAUTH_TOKEN = '9f2ce4d5-d0f9-425d-9531-0b278f667fad'
+OAUTH_TOKEN_SECRET = '37990885-d278-4f10-8b1e-3e57227054df'
 
 CONNECTIONS_URL = 'http://api.linkedin.com/v1/people/~/connections?format=json'
 AUTHORIZATION_URL = 'https://www.linkedin.com/uas/oauth2/authorization'
@@ -50,13 +50,24 @@ def index():
     profile_ids =  json.loads(r.content)
     return render_template('index.html')
 
-@app.route("/searchCompany")
-def searchCompany(name):
-    idtoComDic(profile_ids)
+@app.route("/searchCompany/<company>")
+def searchCompany(company):
+    friends = []
+    print "Searching " + company
+    r = requests.get(url=CONNECTIONS_URL, auth=oauth1)
+    profile_ids =  json.loads(r.content)
+    temp_dict = idtoComDic(profile_ids)
+    print temp_dict
+    for key in temp_dict.iterkeys():
+        if temp_dict[key].lower().find(company) >= 0:
+            friends.append(key)
 
+
+    return render_template('index.html')
 
 def idtoComDic(profile_ids):
-    for i in range(len(profile_ids['values'])):
+    #doing only till 25 as we have limit on number of API calls
+    for i in range(25):
         identity = profile_ids['values'][i]['id']
         URL = 'http://api.linkedin.com/v1/people/id='+identity+':(positions)?format=json'
         r = requests.get(url=URL, auth=oauth1)
@@ -66,6 +77,7 @@ def idtoComDic(profile_ids):
                 all_friends_company_names[identity] = positions_dict['positions']['values'][0]['company']['name']
         else:
             pass
+    return all_friends_company_names
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
