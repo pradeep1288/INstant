@@ -52,29 +52,29 @@ def index():
 
 @app.route("/searchCompany/<company>")
 def searchCompany(company):
-    friends = []
+    friends_id = []
+    friends_name = []
     print "Searching " + company
     r = requests.get(url=CONNECTIONS_URL, auth=oauth1)
     profile_ids =  json.loads(r.content)
     temp_dict = idtoComDic(profile_ids)
-    print temp_dict
     for key in temp_dict.iterkeys():
         if temp_dict[key].lower().find(company) >= 0:
-            friends.append(key)
-
-
+            print key
     return render_template('index.html')
+
 
 def idtoComDic(profile_ids):
     #doing only till 25 as we have limit on number of API calls
     for i in range(25):
         identity = profile_ids['values'][i]['id']
-        URL = 'http://api.linkedin.com/v1/people/id='+identity+':(positions)?format=json'
+        key = profile_ids['values'][i]['firstName'] + " " + profile_ids['values'][i]['lastName']
+        URL = 'http://api.linkedin.com/v1/people/id='+identity+':(positions,first-name,last-name)?format=json'
         r = requests.get(url=URL, auth=oauth1)
         positions_dict = json.loads(r.content)
         if positions_dict.has_key('positions'):
             if positions_dict['positions']['_total'] >= 1:
-                all_friends_company_names[identity] = positions_dict['positions']['values'][0]['company']['name']
+                all_friends_company_names[key] = positions_dict['positions']['values'][0]['company']['name']
         else:
             pass
     return all_friends_company_names
