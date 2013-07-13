@@ -23,6 +23,7 @@
 	<script type="text/javascript">
 	$(function() {
     var availableTags = [
+      "friends of",
       "who work at",
       "who previously worked at",
       "friends",
@@ -31,7 +32,7 @@
       "who are skilled at",
       "who are"  
     ];
-    $( "#mysearch" ).autocomplete({
+    $("#mysearch").autocomplete({
       source: availableTags
     });
   });
