@@ -56,7 +56,7 @@
 	    				var i  = 0;
 	    				for (i=0;i<name.length;i++)
 	    				{
-	    					$('#name').append("<p><b>"+name[i]+"</b></p>");
+	    					$('#name').append("<tr><td><p><b>"+each_school[i]+"</b></p></td></tr>");
 	    				}
 				    });
 	  			});
@@ -72,7 +72,7 @@
 	    				var i  = 0;
 	    				for (i=0;i<each_school.length;i++)
 	    				{
-	    					$('#name').append("<p><b>"+each_school[i]+"</b></p>");
+	    					$('#name').append("<tr><td><p><b>"+each_school[i]+"</b></p></td></tr>");
 	    				}
 				    });
 	  				});
@@ -100,16 +100,13 @@
 			</div>
 		</div>
 	</div>
-	<div class ="container">
+	<div class ="container" id ="mydiv">
 		<div class = "span12">
 			<div class ="row-fluid">
 				<div class="span6">
-					<div class ="span2">
-						<p>image</p>
-					</div>
-					<div class ="span6">
-						<div id="name"></div>
-						<div id="company"></div>
+					<div class ="span12">
+						<table  class="table table-condensed table-hover" id="name">
+						</table>	
 					</div>
 				</div>
 			</div>
