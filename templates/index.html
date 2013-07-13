@@ -47,32 +47,38 @@
   		{
   				if (textValue.split('at')[0] == 'who work ')
   				{
-  					$('#name').empty();
+  					$('#sp').append("\<i class\=\"icon\-spinner icon\-spin icon\-large\"\>\<\/i\>");
 	  				var company = textValue.split('at')[1]
 	  				company = company.replace(" ","")
 	  				$.getJSON('searchCompany/' +company, function(data) {
 	  				$.each(data, function(key, val) {
 	    				var name = val.split(",");
 	    				var i  = 0;
+	    				var j = 0;
+	    				$('#name').append("\<thead\>\<tr\>\<th\>#\<\/th\>\<th\>Name\<\/th\>\<\/tr\>");
 	    				for (i=0;i<name.length;i++)
-	    				{
-	    					$('#name').append("<tr><td><p><b>"+each_school[i]+"</b></p></td></tr>");
+	    				{	j = i+1;
+	    					$('#name').append("<tr><td>"+j+"</td><td><p><b>"+each_school[i]+"</b></p></td></tr>");
 	    				}
 				    });
 	  			});
 	  			}
 	  			else if (textValue.split('at')[0] == 'who goto school ')
 	  			{
-	  				$('#name').empty();
+	  				$('#sp').append("\<i class\=\"icon\-spinner icon\-spin icon\-large\"\>\<\/i\>");
 	  				var school = textValue.split('at')[1]
 	  				school = school.replace(" ","")
 	  				$.getJSON('searchUniversity/' +school, function(data) {
 	  				$.each(data, function(key, val) {
 	    				var each_school = val.split(",");
 	    				var i  = 0;
+	    				var j =0;
+	    				$('#sp').empty()
+	    				$('#name').append("\<thead\>\<tr\>\<th\>#\<\/th\>\<th\>Name\<\/th\>\<\/tr\>");
 	    				for (i=0;i<each_school.length;i++)
-	    				{
-	    					$('#name').append("<tr><td><p><b>"+each_school[i]+"</b></p></td></tr>");
+	    				{	
+	    					j = i+1;
+	    					$('#name').append("<tr><td>"+j+"</td><td><p><b>"+each_school[i]+"</b></p></td></tr>");
 	    				}
 				    });
 	  				});
@@ -104,7 +110,8 @@
 		<div class = "span12">
 			<div class ="row-fluid">
 				<div class="span6">
-					<div class ="span12">
+					<div class ="span12 offset6">
+						<div class ="span12 offset6" id="sp"></div>
 						<table  class="table table-condensed table-hover" id="name">
 						</table>	
 					</div>
