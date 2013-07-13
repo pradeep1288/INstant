@@ -94,7 +94,7 @@ def searchUniversity(university):
     key = university
     for i in range (profile_ids['_count']):
         if profile_ids['values'][i].has_key('headline') :
-            if university in profile_ids['values'][i]['headline']:
+            if university.lower() in profile_ids['values'][i]['headline'].lower():
                 if result_uni.has_key(key):
                     result_uni[key] = result_uni[key] + ","+ profile_ids['values'][i]['firstName'] + " " + profile_ids['values'][i]['lastName']
                 else: 
