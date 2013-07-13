@@ -85,6 +85,7 @@ def idtoComDic(profile_ids):
         else:
             pass
     return all_friends_company_names
+
 @app.route("/searchUniversity/<university>")
 def searchUniversity(university):
     result_uni = dict()
@@ -100,38 +101,6 @@ def searchUniversity(university):
                     result_uni[key] =  profile_ids['values'][i]['firstName'] + " " + profile_ids['values'][i]['lastName']
 
     return json.dumps(result_uni)
-'''
-    temp_dict =  idtoUniDic(profile_ids)
-    for key in temp_dict.iterkeys():
-        if temp_dict[key].lower().find(university) >= 0:
-            if result_uni.has_key(temp_dict[key]):
-                result_uni[temp_dict[key]].append(key)
-            else:
-                result_uni[temp_dict[key]] = key
-    return json.dumps(result_uni)
-'''
-
-
-def idtoUniDic(profile_ids):
-    #doing only till 25 as we have limit on number of API calls
-    for i in range(25):
-        identity = profile_ids['values'][i]['id']
-
-        key = profile_ids['values'][i]['firstName'] + " " + profile_ids['values'][i]['lastName']
-
-        URL = 'http://api.linkedin.com/v1/people/id='+identity+':(educations,first-name,last-name)?format=json'
-        r = requests.get(url=URL, auth=oauth1)
-        education_dict = json.loads(r.content)
-        if education_dict.has_key('educations'):
-            if education_dict['educations']['_total'] >= 1:
-                for j in range(0, education_dict['educations']['_total']):
-                    if all_friends_uni_names.has_key(key):
-                        all_friends_uni_names[key].append(education_dict['educations']['values'][j]['school-name'])
-                    else :
-                        all_friends_uni_names[key] =  education_dict['educations']['values'][j]['school-name']
-        else:
-            pass
-    return all_friends_uni_names
 
 
 if __name__ == '__main__':
