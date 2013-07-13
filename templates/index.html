@@ -40,8 +40,12 @@
 
   	function extract(){
   		var textValue = $("#mysearch").val();
-  		var company = textValue.split('at')[1]
-  		alert(company)
+  		if(textValue == ''){
+  			alert("Please write a valid query!")
+  		}else{
+  			var company = textValue.split('at')[1]
+  			alert(company)
+  		}
   		
   	}
 
