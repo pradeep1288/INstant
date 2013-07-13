@@ -43,11 +43,16 @@
   		if(textValue == ''){
   			alert("Please write a valid query!")
   		}else{
-  			var company = textValue.split('at')[1]
-  			alert(company)
-  		}
-  		
+  				var company = textValue.split('at')[1]
+  				company = company.replace(" ","")
+  				$.getJSON('searchCompany/' +company, function(data) {
+  				$.each(data, function(key, val) {
+    				$('#name').append(val);
+    				$('#company').append(key);
+			    });
+  		});		
   	}
+  }
 
   </script>
 </head>
@@ -73,8 +78,8 @@
 						<p>image</p>
 					</div>
 					<div class ="span4">
-						<div class="name"><b>Name of the person</b></div>
-						<div class="company"><b>Company He works for!</b></div>
+						<div id="name"></div>
+						<div id="company"></div>
 					</div>
 				</div>
 				<div class="span6">
@@ -82,8 +87,8 @@
 						<p>image</p>
 					</div>
 					<div class ="span4">
-						<div class="name"><b>Name of the person</b></div>
-						<div class="company"><b>Company He works for!</b></div>
+						<div class="name"></div>
+						<div class="company"></div>
 					</div>
 				</div>
 			</div>
