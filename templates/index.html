@@ -7,6 +7,7 @@
 	<link rel = "stylesheet" href="../static/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css"/>
 	<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
@@ -19,7 +20,7 @@
       "who are skilled at",
       "who are"  
     ];
-    $( "#tags" ).autocomplete({
+    $( ".span2" ).autocomplete({
       source: availableTags
     });
   });
@@ -46,10 +47,12 @@
 	<div class = "hero-unit">
 		<div class="container">
 			<div class="span12 pagination-centered">
-				<form class="navbar-search pagination-centered">
-                	<input type="text" class="search-query span3" placeholder="Search">
-            	</form>
-				<p> Under Construction!</p>
+				<form>
+  					<div class="input-prepend">
+   						 <span class="add-on"><i class=" icon-linkedin"></i></span>
+   						 <input class="span2" type="text" placeholder="Search">
+  					</div>
+  				</form>
 			</div>
 		</div>
 	</div>
